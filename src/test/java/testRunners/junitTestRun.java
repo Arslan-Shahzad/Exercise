@@ -1,4 +1,4 @@
-package testCases;
+package testRunners;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +12,7 @@ import Selenium.Exercise.pageObjects.OfferSummaryPage;
 
 
 
-public class firstTestCase {
+public class junitTestRun {
 
     private static WebDriver driver = null;
     
@@ -53,7 +53,8 @@ public class firstTestCase {
         
         HomePage.offer_hotel(driver).click();
         
-        //Assert.assertEquals(web_url, driver.getCurrentUrl());
+        //Assert.assertEquals(web_url, driver.getCurrentUrl());   <-- This step is failing because the url
+        															//Does not match
 
     }
 
