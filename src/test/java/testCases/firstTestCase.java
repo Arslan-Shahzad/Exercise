@@ -1,21 +1,15 @@
 package testCases;
 
-import java.util.Set;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-
 import Selenium.Exercise.pageObjects.Actions;
 import Selenium.Exercise.pageObjects.HomePage;
 import Selenium.Exercise.pageObjects.OfferSummaryPage;
+
 
 
 public class firstTestCase {
@@ -23,7 +17,7 @@ public class firstTestCase {
     private static WebDriver driver = null;
     
 	String web_url = ("https://www.loveholidays.com/book/flight-and-hotel/offer-" +
-    		"summary.html?shortref=LA9YVPJH&state=AwoUKFAAIKSCaCeCjLYYEIABgHA");
+    					"summary.html?shortref=LA9YVPJH&state=AwoUKFAAIKSCaCeCjLYYEIABgHA");
 	
     
     @Before
@@ -31,8 +25,7 @@ public class firstTestCase {
             String exePath = "resources/chromedriver";
             System.setProperty("webdriver.chrome.driver", exePath);
             driver = new ChromeDriver();
-
-            driver.get(web_url);
+            
     }
     
     
@@ -44,11 +37,7 @@ public class firstTestCase {
 
     @Test
     public void scenario_to_Test() {
-    	
-    	
-    	WebDriverWait wait = new WebDriverWait(driver, 10);
-    	
-    	
+    	driver.get(web_url);
         OfferSummaryPage.Wait_For_Display(driver);
         String offerhotel = OfferSummaryPage.return_hotel_name(driver);
         String test = OfferSummaryPage.return_hotel_destination(driver);
@@ -58,12 +47,6 @@ public class firstTestCase {
         HomePage.home_Button(driver).click();
 
         Actions.switch_tabs(driver);
-        /*Set<String> tab_handles = driver.getWindowHandles();
-        int number_of_tabs = tab_handles.size();
-        int new_tab_index = number_of_tabs-1;
-        driver.switchTo().window(tab_handles.toArray()[new_tab_index].toString()); 
-*/
-        //wait.until(ExpectedConditions.visibilityOf(HomePage.offer_root(driver)));
         
         Assert.assertEquals("Still interested in a holiday to " + offerdest + "?", HomePage.return_hotel_destination(driver));
         Assert.assertEquals(offerhotel, HomePage.return_hotel_name(driver));
