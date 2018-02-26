@@ -27,15 +27,21 @@ public class HomePage {
     }
     
     
-    public static WebElement offer_dest(WebDriver driver){
+    public static WebElement offer_root(WebDriver driver){
     	
-    	element = driver.findElement(By.className("return-to-offer-small"));
+    	element = driver.findElement(By.xpath("//div[@id = 'root']"));
     	return element;
     }
     
     public static WebElement offer_hotel(WebDriver driver){
     	
-    	element = driver.findElement(By.className("return-to-offer-small__content"));
+    	element = HomePage.offer_root(driver).findElement(By.xpath("//a[contains(@class, 'return-to-offer-large__details__name')]"));
+    	return element;
+    }
+    
+    public static WebElement offer_dest(WebDriver driver){
+    	
+    	element = HomePage.offer_root(driver).findElement(By.tagName("h2"));
     	return element;
     }
     
