@@ -13,14 +13,14 @@ public class HomePage {
 	private static String hotelNameClass = "return-to-offer-small";
     
     public static WebElement home_Button(WebDriver driver){
-    	WebDriverWait wait = new WebDriverWait(driver, 50);
+    	WebDriverWait wait = new WebDriverWait(driver, 10);
     	element = driver.findElement(By.xpath("//*[@title='loveholidays Home']"));
     	wait.until(ExpectedConditions.visibilityOf(element));
     	return element;
     }
     
     public static void Wait_For_Display(WebDriver driver){
-    	WebDriverWait wait = new WebDriverWait(driver, 50);
+    	WebDriverWait wait = new WebDriverWait(driver, 10);
     	wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("return-to-offer-small__content")));
     	wait.until(ExpectedConditions.elementToBeClickable(By.className(hotelNameClass)));
         
@@ -39,7 +39,16 @@ public class HomePage {
     	return element;
     }
     
+    public static String return_hotel_destination(WebDriver driver){
+    	 
+    	return HomePage.offer_dest(driver).getText();
+    	
+    }
     
-    
+    public static String return_hotel_name(WebDriver driver){
+   	 
+    	return HomePage.offer_hotel(driver).getText();
+    	
+    }
     
 }

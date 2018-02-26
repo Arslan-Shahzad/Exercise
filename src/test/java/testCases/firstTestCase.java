@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import Selenium.Exercise.pageObjects.HomePage;
-import Selenium.Exercise.pageObjects.LandingPage;
+import Selenium.Exercise.pageObjects.OfferSummaryPage;
 import Selenium.Exercise.pageObjects.handleNotification;
 
 public class firstTestCase {
@@ -27,9 +27,9 @@ public class firstTestCase {
         driver.get(web_url);
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        LandingPage.Wait_For_Display(driver);
-        String offerhotel = LandingPage.hotel_Name(driver).getText();
-        String offerdest = LandingPage.dest_Name(driver).getText();
+        OfferSummaryPage.Wait_For_Display(driver);
+        String offerhotel = OfferSummaryPage.return_hotel_name(driver);
+        String offerdest = OfferSummaryPage.return_hotel_destination(driver);
 
         wait.until(ExpectedConditions.elementToBeClickable(HomePage.home_Button(driver)));
         handleNotification.Wait_For_Display_and_close(driver);
@@ -37,11 +37,11 @@ public class firstTestCase {
         
         // I was not able to resolve 'element not found Error'
         // I completed the code as i believe it would work.
+       
+        wait.until(ExpectedConditions.stalenessOf(HomePage.offer_hotel(driver)));
         
-        wait.until(ExpectedConditions.visibilityOf(HomePage.offer_dest(driver)));
-        
-        Assert.assertEquals(offerdest, HomePage.offer_dest(driver).getText());
-        Assert.assertEquals(offerhotel, HomePage.offer_hotel(driver).getText());
+        Assert.assertEquals(offerdest, HomePage.return_hotel_destination(driver));
+        Assert.assertEquals(offerhotel, HomePage.return_hotel_name(driver));
         
         HomePage.offer_hotel(driver).click();
         

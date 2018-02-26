@@ -8,15 +8,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LandingPage {
+public class OfferSummaryPage {
     private static WebElement element = null;
     private static String hotelNameClass = "book-basket__hotel-details__name";
     private static String hotelLocationClass = "book-basket__hotel-details__destination";
     
     public static void Wait_For_Display(WebDriver driver){
-    	WebDriverWait wait = new WebDriverWait(driver, 20);
+    	WebDriverWait wait = new WebDriverWait(driver, 10);
     	wait.until(ExpectedConditions.presenceOfElementLocated(By.className(hotelNameClass)));
-    	wait.until(ExpectedConditions.visibilityOf(LandingPage.dest_Name(driver)));
+    	wait.until(ExpectedConditions.visibilityOf(OfferSummaryPage.dest_Name(driver)));
         
     }
 
@@ -34,4 +34,15 @@ public class LandingPage {
 
     }
 
+    public static String return_hotel_destination(WebDriver driver){
+   	 
+    	return OfferSummaryPage.dest_Name(driver).getText();
+    	
+    }
+    
+    public static String return_hotel_name(WebDriver driver){
+   	 
+    	return OfferSummaryPage.hotel_Name(driver).getText();
+    	
+    }
 }
